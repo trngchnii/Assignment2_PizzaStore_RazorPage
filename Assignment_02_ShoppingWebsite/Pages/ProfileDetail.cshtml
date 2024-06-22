@@ -1,0 +1,71 @@
+﻿@page
+@model Assignment_02_ShoppingWebsite.Pages.ProfileDetailModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Edit Customer</h2>
+        <form method="post">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Username</label>
+                <div class="col-sm-8">
+                    <input readonly asp-for="Account.UserName" class="form-control-plaintext" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Password</label>
+                <div class="col-sm-8">
+                    <input asp-for="Account.Password" class="form-control" />
+                    <span asp-validation-for="Account.Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Full Name</label>
+                <div class="col-sm-8">
+                    <input asp-for="Account.FullName" class="form-control" />
+                    <span asp-validation-for="Account.FullName" class="text-danger"></span>
+                </div>
+            </div>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+            <div class="row mb-3">
+                <div class="offset-sm-4 col-sm-4 d-grid">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-12 mx-auto">
+        <h2>Order History</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Order Date</th>
+                    <th>Shipped Date</th>
+                    <th>Freight</th>
+                    <th>Ship Address</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Order)
+                {
+                    <tr>
+                        <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                        <td>@order.ShippedDate.ToString("yyyy-MM-dd")</td>
+                        <td>@order.Freight</td>
+                        <td>@order.ShipAddress</td>
+                        <td><a asp-page="/Admin/Orders/OrderDetail" asp-route-id="@order.OrderId">Details</a> </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

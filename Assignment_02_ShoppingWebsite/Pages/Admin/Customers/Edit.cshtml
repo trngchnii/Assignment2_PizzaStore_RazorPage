@@ -1,0 +1,56 @@
+﻿@page
+@model EditModel
+
+@{
+    ViewData["Title"] = "Edit Customer";
+}
+
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Edit Customer</h2>
+        <form method="post">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Customer ID</label>
+                <div class="col-sm-8">
+                    <input readonly asp-for="Customer.CustomerId" class="form-control-plaintext" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Password</label>
+                <div class="col-sm-8">
+                    <input asp-for="Customer.Password" class="form-control" />
+                    <span asp-validation-for="Customer.Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Contact Name</label>
+                <div class="col-sm-8">
+                    <input asp-for="Customer.ContactName" class="form-control" />
+                    <span asp-validation-for="Customer.ContactName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Address</label>
+                <div class="col-sm-8">
+                    <input asp-for="Customer.Address" class="form-control" />
+                    <span asp-validation-for="Customer.Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Phone</label>
+                <div class="col-sm-8">
+                    <input asp-for="Customer.Phone" class="form-control" />
+                    <span asp-validation-for="Customer.Phone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="offset-sm-4 col-sm-4 d-grid">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="col-sm-4 d-grid">
+                    <a class="btn btn-outline-primary" asp-page="Index" role="button">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

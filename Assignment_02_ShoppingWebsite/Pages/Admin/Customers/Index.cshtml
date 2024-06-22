@@ -1,0 +1,63 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Customer Management";
+}
+@{
+    var accountType = HttpContext.Session.GetInt32("AccountType");
+    if (accountType != 1)
+    {
+        Response.Redirect("Unauthorized");
+    }
+
+}
+
+
+<h2 class="text-center mb-5">List of Customers</h2>
+
+<div class="row mb-5">
+    <div class="col">
+        <a asp-page="Create" class="btn btn-primary">New Customer</a>
+    </div
+    <div class="col">
+
+    </div>
+</div>
+<div>
+    <table class="table container">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Contact Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Customer) 
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CustomerId" class="btn btn-primary btn-sm">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CustomerId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+

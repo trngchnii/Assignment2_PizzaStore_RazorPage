@@ -1,0 +1,46 @@
+﻿@page
+@model Assignment_02_ShoppingWebsite.Pages.Admin.Orders.OrderDetailModel
+@{
+    ViewData["Title"] = "Order Detail";
+}
+
+<div class="container">
+    <h2 class="my-4">Order Details</h2>
+
+    @if (Model.OrderDetail == null || !Model.OrderDetail.Any())
+    {
+        <p>No order details found.</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Product ID</th>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderDetail)
+                    {
+                        <tr>
+                            <td>@item.ProductId</td>
+                            <td>@item.OrderId</td>
+                            <td>@item.UnitPrice</td>
+                            <td>@item.Quantity</td>
+                            <td>@(item.UnitPrice * item.Quantity)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+<div>
+    <a asp-page="../../ProfileDetail">Back to List</a>
+</div>
+
